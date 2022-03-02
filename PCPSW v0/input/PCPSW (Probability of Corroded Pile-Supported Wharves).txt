@@ -1,0 +1,64 @@
+NOTE: - saat mengubah pilihan plot (plot biasa atau live plotting) maka perlu refresh environment.
+
+
+Bahasa yang digunakan : Julia
+IDE yang bisa digunakan : 1. Atom (Juno)
+                          2. Visual Studio Code
+(dua IDE ini adalah yang paling popular buat Julia)
+
+Packages yang harus diinstall yaitu : Plots, SpecialFunctions, Distributions, Statistics, Parameters,
+                                      GLMakie, Makie, XLSX
+
+
+Alasan proses lamanya pengerjaan program ini adalah
+- Code yang ditulis bukan jenis code versi beginner(yg performanya bs lambat, maka untuk membuat code yang baik
+pada level advanced shg saya harus mempelajari bahasa yang digunakan. Kemudian code tersebut harus readable 
+sehingga mudah dilakukan cek jika ada kesalahan. Dan karena menggunakan code tingkat lanjut maka harus dilakukan 
+optimasi sehingga Running nya benar-benar cepat. Misalnya jika menggunakan C++ pun jikalau code nya asal jadi maka 
+akan menjadi lemot running nya. Dan kekompleks-an codenya bisa dilihat pada file-file dot jl.
+
+- Saya harus mempelajari dan memperdalam tentang statistik seperti : PDF, CDF, Normal, LogNormal dan 
+Monte Carlo Simulation yang digunakan dalam program ini sehingga misalnya kita bisa menemukan beberapa 
+function pada program ini yang menggunakan numeric approximation.
+
+- Saya perlu menggali lebih dalam referensi jurnal yang dipakai. maka dari itu saya telah melakukan 
+banyak cara yang dibuktikan melalui banyak code yang saya coba-coba tuliskan dan re-Run kemudian 
+dibandingkan dengan hasil dari jurnal. Dimana saya menemukan beberapa hal seperti:
+    1. Input nilai x atau concrete cover yang terakhir saya sampaikan melalui zoom dimana harus dibagi 1000 itu adalah SALAH.
+       kesalahan ini diakibatkan bahwa fungsi erf atau error function itu mendeteksi nilai yang menghasilkan nilai 1 sehingga
+       saat hasil erf ini dimasukkan kedalam 1 - erf(...) maka 1 - 1 = 0. Deteksi hal ini dikarenakan nilai float 
+       pada code itu OverFlow, maka saat nilai x dibagi 1000 maka hasil dari erf(...) akan tidak persis sama dengan 1 
+       yang kemudian hasil hitungan nilai C(x,t) akan dapat muncul. Dan saya tetap berpendapat bahwa tidak mungkin 
+       nilai cover concrete(x) itu harus dibagi 1000 karena Logika matematisnya itu tidak mungkin.
+       maka saya melakukan kajian fokus mencari alasan sehingga x tidak perlu dibagi 1000 dan akhirnya saya menemukannya.
+
+    2. Grafik Dc pada jurnal secara input range adalah dalam tahun dari nol hingga 75th dimana pada persamaan RH dan T 
+       adalah dalam bulan. Sehingga pada penentuan nilai Dc didasarkan pada dua variable ini. Karena ada 2 range dalam 
+       penentuan Dc dan C maka dalam penulisan code akan lebih kompleks. (hal ini yg membuat lamanya penulisan code)
+
+    3. Berdasarkan point 2 di atas, ditemukan bahwa grafik C(x,t) pada jurnal itu ditampilkan pada nilai maksimumnya, 
+       padahal logika matematis karena adanya variable bulan dan tahun  dimana berdasarkan grafik Dc maka nilai Dc itu 
+       fluktuatif dimana senada dengan fungsi RH (humidity) dan T(temperature). Yang mana dalam code yg salah tulis, 
+       saya membuktikan melalui pembuatan 3 alternatif perhitungan grafik C(x,t) :
+           alternatif 1 itu berdasarkan fungsi Dc yang menunjukkan fluktuatifnya nilai C.
+           alternatif 2 itu berdasarkan nilai mean Dc dari tabel RV jurnal.
+           alternatif 3 itu berdasarkan nilai C melalui Monte Carlo Simulation.
+       dimana average dari alternatif ke-1 dibandingkan dgn alternatif ke-2 dan ke-3 itu hasilnya mendekati atau mirip 
+       dan dari ketiga alternatif tsb dibandingkan dengan grafik pada jurnal adalah berbeda.
+    4. Berdasarkan point 3 di atas maka perhitungan probability corrosion nya adalah mengacu pada alternatif ke 3 
+       karena menggunakan MCS, dimana perhitungan MCS adalah berdasarkan data random variable.
+       Yang mana menunjukkan bahwa hasil program tersebut akan diperoleh hasil nilai probability yang 
+       lebih kecil dari referensi jurnal.
+
+Hal lain yang membuat lamanya proses ngoding program ini adalah
+- adanya penampilan grafik 3 siklus (25th, 50th dan 75th).
+- banyak penulisan ulang code karena penyesuain metode yg digunakan.
+- ada handle error sehingga mengatasi kesalahan input perintah oleh user.
+- ada banyak pilihan bagi user program ini sehingga mudah dipakai seperti : 
+       ada pilihan grafik pdf normal atau pdf lognormal, pilihan distribusi normal atau  distribusi lognormal, 
+       input data melalui Excel, adanya pilihan plotting live untuk grafik MCS(bisa jg direcording) atau pilih plot biasa.
+
+      
+Salam
+Abdul Rochim
+abdul.rochim.civeng@gmail.com
