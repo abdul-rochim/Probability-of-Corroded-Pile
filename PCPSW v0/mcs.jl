@@ -552,7 +552,7 @@ function mcs(params_object)
             display(fig) #do not display if using record
         end #take this "end" below =>as the end of elseif statement
             #record(fig, joinpath(@__DIR__, "output", "mcs_plot.mp4")) do io
-        for i = 1 : length(t_used) #nframes
+        for i in eachindex(t_used) # = 1 : length(t_used) #nframes
             if i <= convert(Int64,round(length(t_used)/3, digits=0))
                 h = 1       #h = 1 for 25 years
                 
