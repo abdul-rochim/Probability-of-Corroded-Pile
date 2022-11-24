@@ -7,7 +7,7 @@ IDE yang bisa digunakan : 1. Atom (Juno)
 (dua IDE ini adalah yang paling popular buat Julia)
 
 Packages yang harus diinstall yaitu : Plots, SpecialFunctions, Distributions, Statistics, Parameters,
-                                      GLMakie, Makie, XLSX
+                                      GLMakie, Makie, XLSX, StaticLint
 
 
 Alasan proses lamanya pengerjaan program ini adalah
