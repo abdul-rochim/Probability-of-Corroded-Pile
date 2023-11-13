@@ -540,11 +540,11 @@ function mcs(params_object)
             lines!(points_10percent, color= :magenta, linewidth= :2, linestyle=:dash)
             lines!(points_50percent, color= :magenta, linewidth= :2, linestyle=:dash)
             text!("Atmosperic", color =:red, position = Point2f(3.0, 0.95),
-            textsize = 15, align = (:left, :center))
+            fontsize = 15, align = (:left, :center))
             text!("Splash/Tidal", color =:blue, position = Point2f(3.0, 0.90),
-            textsize = 15, align = (:left, :center))
+            fontsize = 15, align = (:left, :center))
             text!("Submersion", color =:black, position = Point2f(3.0, 0.85),
-            textsize = 15, align = (:left, :center))
+            fontsize = 15, align = (:left, :center))
             t = t_used
             limits!(ax, 0, num_year, 0, 1)
             fps = 120        #30, 60, 120, ...  frame per second
